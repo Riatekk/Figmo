@@ -95,7 +95,7 @@
             label: 'Shape',
             type: 'shape'
           },{
-            iconName: 'video',
+            iconName: 'videocam',
             label: 'Video',
             type: 'video'
           }
@@ -233,6 +233,14 @@
               l: ''
             });
             break;
+          case 'video':
+            Object.assign(widget, {
+              w: 100,
+              h: 100,
+              bc: '#ffffff',
+              l: ''
+            });
+            break;
           case 'shape':
             Object.assign(widget, {
               w: 200,
@@ -258,6 +266,7 @@
               z: 0
             });
             break;
+            
         }
 
         this.$store.dispatch('createWidget', widget)

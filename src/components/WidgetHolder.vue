@@ -20,7 +20,7 @@
       <h1>{{ activePage.name }}</h1>
     </div>
 
-    <div class="widget-holder">
+    <div class="widget-holder" :style="{backgroundColor: 'white'}">
       <widget-button class="draggable-item"
         v-for="widget in widgets('button')"
         :class="{selected: activeWidget && widget.id == activeWidget.id}"
@@ -87,6 +87,12 @@
         :widget="widget" :key="activePage.id + '-' + widget.id"
       ></widget-image>
 
+      <widget-video class="draggable-item"
+        v-for="widget in widgets('video')"
+        :class="{selected: activeWidget && widget.id == activeWidget.id}"
+        :widget="widget" :key="activePage.id + '-' + widget.id"
+      ></widget-video>
+
       <widget-shape class="draggable-item"
         v-for="widget in widgets('shape')"
         :class="{selected: activeWidget && widget.id == activeWidget.id}"
@@ -127,6 +133,7 @@
   import WidgetShape from './widgets/WidgetShape.vue'
   import WidgetBrowser from './widgets/WidgetBrowser.vue'
   import WidgetMobile from './widgets/WidgetMobile.vue'
+import WidgetVideo from './widgets/WidgetVideo.vue'
 
   export default {
     data () {
@@ -208,11 +215,11 @@
 
       activeWidget () {
         const widget = this.$store.getters.activeWidget
-
+        
         if (!widget) {
           return null
         }
-
+        widget.l = "http://clips.vorwaerts-gmbh.de/big_buck_bunny.webm"
         return widget
       }
     },
@@ -232,6 +239,7 @@
       'widget-shape': WidgetShape,
       'widget-browser': WidgetBrowser,
       'widget-mobile': WidgetMobile,
+      'widget-video': WidgetVideo,
       'vue-draggable-resizable': VueDraggableResizable
     }
   }
