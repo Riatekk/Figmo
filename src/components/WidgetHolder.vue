@@ -93,7 +93,7 @@
         :widget="widget" :key="activePage.id + '-' + widget.id"
       ></widget-shape>
 
-      <widget-browser class="draggable-item"
+    <widget-browser class="draggable-item"
         v-for="widget in widgets('browser')"
         :class="{selected: activeWidget && widget.id == activeWidget.id}"
         :widget="widget" :key="activePage.id + '-' + widget.id"
@@ -263,7 +263,7 @@
 
     .widget-holder {
       border: 1px solid #d1d1d1;
-      background: white url(../assets/paper.png);
+      background: white;
       -webkit-box-shadow: 0 0 10px #bebebe;
       -moz-box-shadow: 0 0 10px #bebebe;
       box-shadow: 0 0 10px #bebebe;

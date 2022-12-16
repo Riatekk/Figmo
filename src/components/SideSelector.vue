@@ -4,7 +4,11 @@
       <i v-if="containerOpen" class="material-icons" @click="toggleContainerState">chevron_left</i>
       <i v-if="!containerOpen" class="material-icons" @click="toggleContainerState">chevron_right</i>
     </div>
-
+    <div style="margin-top: 20px; display: flex; align-items: center; gap: 3px;">
+      <img src="../assets/figmo-logo.png" style="width: 25px"/>
+      <h2>igmo</h2>
+    </div>
+   
     <div v-if="containerOpen" class="row">
       <div v-if="activePage" class="col-sm">
         <div v-for="menuItem in menuItems" :key="menuItem.name">
@@ -35,64 +39,69 @@
       return {
         containerOpen: true,
         menuItems: [{
-          name: 'form',
+          name: 'Formulaire',
           items: [{
             iconName: 'check_circle',
-            label: 'button',
+            label: 'Bouton',
             type: 'button'
           },{
             iconName: 'check_box',
-            label: 'checkbox',
+            label: 'Checkbox',
             type: 'checkbox'
           },{
             iconName: 'arrow_drop_down_circle',
-            label: 'dropdown',
+            label: 'Dropdown',
             type: 'dropdown'
           },{
             iconName: 'settings_ethernet',
-            label: 'scrollbar',
+            label: 'Scrollbar',
             type: 'scrollbar'
           },{
             iconName: 'radio_button_checked',
-            label: 'radio',
+            label: 'Radio',
             type: 'radio'
           },{
             iconName: 'I',
-            label: 'input',
+            label: 'Input',
             type: 'input'
           },{
             iconName: 'remove',
-            label: 'hr',
+            label: 'Ligne',
             type: 'hr'
           }]
         },{
-          name: 'typography',
+          name: 'Typography',
           items: [{
             iconName: 'H',
-            label: 'heading',
+            label: 'Titre',
             type: 'heading'
           },{
             iconName: 'T',
-            label: 'label',
+            label: 'Text',
             type: 'label'
           },{
             iconName: 'list',
-            label: 'list',
+            label: 'Liste',
             type: 'list'
           }]
         },{
-          name: 'content',
+          name: 'Contenu',
           items: [{
             iconName: 'photo',
-            label: 'image',
+            label: 'Image',
             type: 'image'
           },{
             iconName: 'lens',
-            label: 'shape',
+            label: 'Shape',
             type: 'shape'
-          }]
+          },{
+            iconName: 'video',
+            label: 'Video',
+            type: 'video'
+          }
+        ]
         },{
-          name: 'other',
+          /*name: 'other',
           items: [{
             iconName: 'computer',
             label: 'browser',
@@ -101,7 +110,7 @@
             iconName: 'phone_android',
             label: 'mobile',
             type: 'mobile'
-          }]
+          }]*/
         }]
       }
     },
@@ -280,9 +289,11 @@
 
   .container {
     position: fixed;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
-    height: 100%;
+    height: 90%;
+    border-radius: 0 20px 20px 0;
     background-color: $sidebar-background-color;
     z-index: 1000;
     color: $sidebar-color;
@@ -319,7 +330,7 @@
         position: relative;
 
         background-color: $sidebar-icon-background-color;
-        border-radius: 5px;
+        border-radius: 20px;
         transform: scale(0.9);
 
         .icon-holder {

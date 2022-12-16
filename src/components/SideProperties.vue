@@ -1,3 +1,4 @@
+import jspdf from 'jspdf'
 <template>
   <div class="container" :style="{width: containerWidth + 'px' }">
     <div class="open-close">
@@ -150,7 +151,7 @@
             <input type="file" id="uploadJsonFile" @change="uploadJsonFile">
           </div>
 
-          <span data-tip="export png">
+          <span data-tip="export pdf">
             <i v-if="activePage" class="material-icons" @click="exportCanvasToFile">save</i>
           </span>
 
@@ -283,10 +284,16 @@
 
         // @link https://stackoverflow.com/questions/31656689/how-to-save-img-to-users-local-computer-using-html2canvas
         html2canvas(document.querySelector("#widget-holder")).then(canvas => {
-          var anchor = document.createElement('a')
-          anchor.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream")
-          anchor.download = this.activePage.name + '.jpg'
-          anchor.click()
+         var anchor = document.createElement('a')
+         anchor.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream")
+         anchor.download = this.activePage.name + '.pdf.jpeg'  
+         anchor.click();
+         /*
+          var imgData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
+          var doc = new jspdf();
+          doc.addImage(imgData,'PNG',10,10)
+          doc.save('output.pdf');
+         */
         })
       },
 
