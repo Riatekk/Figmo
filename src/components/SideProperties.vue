@@ -9,7 +9,8 @@ import jspdf from 'jspdf'
     <div v-if="containerOpen" class="row">
       <div class="col-sm">
         <h2>Ajouter une page <span data-tip="add new page"><i class="add-page material-icons" @click="createPage">add_circle</i></span></h2>
-
+        <hr color="white" />
+        <br />
         <table class="page-table">
           <tr v-for="(page, index) in pages" :key="page.id">
             <td @click="setActivePage(page)">
@@ -152,6 +153,7 @@ import jspdf from 'jspdf'
         </div>
 
         <div class="bottom-holder">
+          <hr color="white" />
           <div v-if="showImportFile" class="upload-json-file">
             <p>import json file</p>
             <input type="file" id="uploadJsonFile" @change="uploadJsonFile">
@@ -291,34 +293,22 @@ import jspdf from 'jspdf'
         // @link https://stackoverflow.com/questions/31656689/how-to-save-img-to-users-local-computer-using-html2canvas
         
         html2canvas(document.querySelector("#widget-holder")).then(canvas => {
-        /*
+        
          var anchor = document.createElement('a')
          anchor.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream")
-         anchor.download = this.activePage.name + '.pdf.jpeg'
-           
+         anchor.download = this.activePage.name + '.pdf'
          anchor.click();
         
-          
+          /*
           var imgData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
           var doc = new jspdf()
           doc.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream")
-          doc.download = this.activePage.name + '.pdf.jpeg'  
+          doc.download = this.activePage.name + '.pdf'  
           doc.click();
           */
         }      
         )
 
-        
-
-        html2canvas(this.$refs.content, {
-        width: doc.internal.pageSize.getWidth(),
-        height: doc.internal.pageSize.getHeight()
-             }).then((canvas) => {
-        const img = canvas.toDataURL("image/png");
-
-        doc.addImage(img, "PNG", 140, 10, doc.internal.pageSize.getWidth(), doc.internal.pageSize.getHeight());
-        doc.save("p&lstatement.pdf");
-      })
       },
 
       exportLocalstorageToJsonFile () {
@@ -414,7 +404,7 @@ import jspdf from 'jspdf'
           return false
         }
 
-        const allowed = ['button', 'label', 'input', 'image', 'shape', 'browser', 'mobile']
+        const allowed = ['canvas', 'button', 'label', 'input', 'image', 'shape', 'browser', 'mobile']
 
         return allowed.includes(this.activeWidget.type)
       },

@@ -6,14 +6,15 @@
     </div>
     <div style="margin-top: 20px; display: flex; align-items: center; gap: 3px;">
       <img src="../assets/figmo-logo.png" style="width: 25px"/>
-      <h2>igmo</h2>
+      <h2>IGMO</h2>
     </div>
    
     <div v-if="containerOpen" class="row">
       <div v-if="activePage" class="col-sm">
         <div v-for="menuItem in menuItems" :key="menuItem.name">
-          <h2>{{ menuItem.name }}</h2>
-
+          <br/>
+          <h4>{{ menuItem.name }}</h4>
+          <hr color="white" />
           <ul>
             <li v-for="item in menuItem.items" :key="item.name" @click="createWidget(item.type)">
               <div class="icon-holder">
@@ -100,8 +101,8 @@
             type: 'video'
           }
         ]
-        },{
-          /*name: 'other',
+        }/*,{
+          name: 'other',
           items: [{
             iconName: 'computer',
             label: 'browser',
@@ -110,8 +111,8 @@
             iconName: 'phone_android',
             label: 'mobile',
             type: 'mobile'
-          }]*/
-        }]
+          }]
+        }*/]
       }
     },
 
